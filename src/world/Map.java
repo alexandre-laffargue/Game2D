@@ -1,5 +1,8 @@
 package world;
 
+import main.GPanel;
+
+import java.awt.*;
 import java.io.*;
 import java.util.Arrays;
 
@@ -8,9 +11,12 @@ public class Map {
     public int width;
     public int height;
     public Tile[][] tiles;
-    final char EOL = 'x';
+    final GPanel gp;
+    final String EOL = "x";
+    final String EOC = "y";
 
-    public Map(String path) {
+    public Map(String path, GPanel gp) {
+        this.gp = gp;
         File file = new File(path);
         try {
             BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -32,7 +38,8 @@ public class Map {
         }
     }
 
-    public Map(int width, int height) {
+    public Map(int width, int height, GPanel gp) {
+        this.gp = gp;
         this.width = width;
         this.height = height;
         tiles = new Tile[height][width];
@@ -48,16 +55,28 @@ public class Map {
     }
 
     private void loadMap(String string){
-        String[] lines = string.split(String.valueOf(EOL));
-
-        width = lines[0].length();
+        String[] lines = string.split(EOL);
         height = lines.length;
+        String[][] codes = new String[height][];
+        for(int i = 0; i < height; i++){
+            codes[i] = lines[i].split(EOC);
+        }
+        width = codes[0].length;
         tiles = new Tile[height][width];
         for (int j = 0; j < height; j++) {
             for (int i = 0; i < width; i++) {
-                TileEntity entity = TileEntity.fromCode(lines[j].charAt(i));
-                String res = entity.getRes();
+                TileEntity tEntity = TileEntity.fromCode(codes[j][i]);
+                String res = tEntity.getRes();
                 tiles[j][i] = new Tile(res);
+            }
+        }
+    }
+
+    public void draw(Graphics2D g2) {
+        int tmpi = gp.player.x * gp.tiLeSize - gp.player.xGraphic,tmpj = gp.player.y * gp.tiLeSize - gp.player.yGraphic;
+        for (int j = 0; j < height; j++) {
+            for (int i = 0; i < width; i++) {
+                g2.drawImage(tiles[j][i].image,i * gp.tiLeSize - tmpi, j * gp.tiLeSize - tmpj, gp.tiLeSize, gp.tiLeSize, null);
             }
         }
     }

@@ -8,18 +8,25 @@ import java.awt.*;
 
 public class GPanel extends JPanel implements Runnable{
 
-    Map map;
-    public int tiLeSize = 48;
+    Map map = new Map("res/maptest.txt", this);
+    // SCREEN SETTINGS
+    public final int tiLeSize = 48;
+    public final int maxScreenCol = 32;
+    public final int maxScreenRow = 18;
+    public final int screenWidth = tiLeSize * maxScreenCol; // 1536 pixels
+    public final int screenHeight = tiLeSize * maxScreenRow; // 864 pixels
+
+
 
     public KeyHandler  keyH = new KeyHandler();
-    Player player = new Player(this);
+    public Player player = new Player(this);
 
     final int FPS = 60;
     public int drawFPS;
     Thread gameThread;
     public GPanel() {
-        map = new Map(50, 50);
-        //map = new world.Map("res/map.txt");
+        this.setPreferredSize(new Dimension(screenWidth, screenHeight));
+        this.setBackground(Color.BLACK);
         this.addKeyListener(keyH);
         this.setFocusable(true);
     }
@@ -28,20 +35,16 @@ public class GPanel extends JPanel implements Runnable{
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)(g);
 
-        paintMap(g2);
+        map.draw(g2);
         player.draw(g2);
-        player.update();
+        if(keyH.vPressed) drawhitbox(g2);
 
 
     }
 
-    public void paintMap(Graphics2D g2){
-
-        for (int j = 0; j < map.height; j++) {
-            for (int i = 0; i < map.width; i++) {
-                g2.drawImage(map.tiles[j][i].image, i * tiLeSize, j * tiLeSize, tiLeSize, tiLeSize, null);
-            }
-        }
+    public void drawhitbox(Graphics2D g2) {
+        g2.setColor(Color.RED);
+        g2.drawRect(player.xGraphic, player.yGraphic , tiLeSize, tiLeSize);
     }
 
     @Override
@@ -70,7 +73,6 @@ public class GPanel extends JPanel implements Runnable{
         gameThread.start();
     }
     public void update() {
-
-        //player.x+= 1;
+        player.update();
     }
 }

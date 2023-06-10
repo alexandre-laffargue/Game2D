@@ -10,9 +10,9 @@ public class Main {
         window.setResizable(false);
         window.setTitle("Game2D");
 
-        window.setSize( 1024, 768 );
         GPanel gp = new GPanel();
         window.add(gp);
+        window.pack();
 
         window.setLocationRelativeTo(null);
         window.setVisible(true);

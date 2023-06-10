@@ -14,13 +14,15 @@ public class Player extends Entity{
     public BufferedImage imageInstant;
     public Player(GPanel gp) {
         super(gp);
-        this.x = 0;
-        this.y = 0;
+        x = 25;
+        y = 27;
+        xGraphic = gp.screenWidth/2 - gp.tiLeSize/2;
+        yGraphic = gp.screenHeight/2 - gp.tiLeSize/2;
         getImage();
         update();
     }
     public void draw(Graphics2D g2) {
-        g2.drawImage(imageInstant, x * gp.tiLeSize, y * gp.tiLeSize,gp.tiLeSize, gp.tiLeSize,  null);
+        g2.drawImage(imageInstant, xGraphic, yGraphic,gp.tiLeSize, gp.tiLeSize,  null);
     }
 
     public void getImage() {
@@ -38,7 +40,7 @@ public class Player extends Entity{
     public void update() {
         imageInstant = still[spriteNum];
 
-        if(gp.keyH.leftPressed)   x--;
+        if(gp.keyH.leftPressed)   x-=0.1;
         if(gp.keyH.rightPressed)  x++;
         if(gp.keyH.upPressed)     y--;
         if(gp.keyH.downPressed)   y++;
