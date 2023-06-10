@@ -6,8 +6,13 @@ import java.util.Objects;
 import java.util.Random;
 
 public class GPanel extends JPanel implements Runnable{
-    final int FPS = 60;
+
     Map map;
+    public int tiLeSize = 48;
+    Player player = new Player(this);
+
+
+    final int FPS = 60;
     public int drawFPS;
     Thread gameThread;
     public GPanel() {
@@ -19,14 +24,17 @@ public class GPanel extends JPanel implements Runnable{
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)(g);
 
-        paintMap(g2, map);
+        paintMap(g2);
+        player.draw(g2);
+
 
     }
 
-    public void paintMap(Graphics2D g2, Map map){
+    public void paintMap(Graphics2D g2){
+
         for (int j = 0; j < map.height; j++) {
             for (int i = 0; i < map.width; i++) {
-                g2.drawImage(map.tiles[j][i].image, i * 32, j * 32, null);
+                g2.drawImage(map.tiles[j][i].image, i * tiLeSize, j * tiLeSize, tiLeSize, tiLeSize, null);
             }
         }
     }
@@ -44,7 +52,7 @@ public class GPanel extends JPanel implements Runnable{
             lastTime = currentTime;
 
             if (delta > 1) {
-                repaint();
+                repaint(); update();
                 delta--; drawFPS++;
             }
             if ( timer >= 1000000000 ) { System.out.println(drawFPS + " FPS"); drawFPS = 0; timer = 0; }
@@ -55,5 +63,9 @@ public class GPanel extends JPanel implements Runnable{
 
         gameThread = new Thread(this);
         gameThread.start();
+    }
+    public void update() {
+
+        //player.x+= 1;
     }
 }
