@@ -1,9 +1,10 @@
-import javax.imageio.ImageIO;
+package main;
+
+import entity.Player;
+import world.Map;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.util.Objects;
-import java.util.Random;
 
 public class GPanel extends JPanel implements Runnable{
 
@@ -17,7 +18,7 @@ public class GPanel extends JPanel implements Runnable{
     Thread gameThread;
     public GPanel() {
         map = new Map(50, 50);
-        //map = new Map("res/map.txt");
+        //map = new world.Map("res/map.txt");
     }
 
     public void paintComponent(Graphics g) {
@@ -26,6 +27,7 @@ public class GPanel extends JPanel implements Runnable{
 
         paintMap(g2);
         player.draw(g2);
+        player.update();
 
 
     }

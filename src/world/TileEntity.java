@@ -1,8 +1,10 @@
+package world;
+
 public enum TileEntity {
 
-    DIRT('D', "dirt.png"),
-    GRASS('G', "grass.png"),
-    SAND('S',  "sand.png");
+    DIRT('D', "/dirt.png"),
+    GRASS('G', "/grass.png"),
+    SAND('S',  "/sand.png");
 
     private final char code;
     private final String res;
