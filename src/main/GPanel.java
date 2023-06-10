@@ -10,8 +10,9 @@ public class GPanel extends JPanel implements Runnable{
 
     Map map;
     public int tiLeSize = 48;
-    Player player = new Player(this);
 
+    public KeyHandler  keyH = new KeyHandler();
+    Player player = new Player(this);
 
     final int FPS = 60;
     public int drawFPS;
@@ -19,6 +20,8 @@ public class GPanel extends JPanel implements Runnable{
     public GPanel() {
         map = new Map(50, 50);
         //map = new world.Map("res/map.txt");
+        this.addKeyListener(keyH);
+        this.setFocusable(true);
     }
 
     public void paintComponent(Graphics g) {

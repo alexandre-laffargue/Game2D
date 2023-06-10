@@ -38,6 +38,11 @@ public class Player extends Entity{
     public void update() {
         imageInstant = still[spriteNum];
 
+        if(gp.keyH.leftPressed)   x--;
+        if(gp.keyH.rightPressed)  x++;
+        if(gp.keyH.upPressed)     y--;
+        if(gp.keyH.downPressed)   y++;
+
         spriteCounter++;
         if(spriteCounter > 10) {
             if(spriteNum == spriteNumberStill-1) spriteNum = 0;
