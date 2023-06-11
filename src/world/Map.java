@@ -73,13 +73,18 @@ public class Map {
     }
 
     public void draw(Graphics2D g2) {
-        int tmpi = gp.player.x - gp.player.xGraphic,tmpj = gp.player.y - gp.player.yGraphic;
+        int tmpI = gp.player.x - gp.player.xGraphic,tmpJ = gp.player.y - gp.player.yGraphic;
         for (int j = 0; j < height; j++) {
             for (int i = 0; i < width; i++) {
-                g2.drawImage(tiles[j][i].image,i * gp.tiLeSize - tmpi, j * gp.tiLeSize - tmpj, gp.tiLeSize, gp.tiLeSize, null);
+
+                int xWorld = i * gp.tiLeSize;
+                int yWorld = j * gp.tiLeSize;
+                if (xWorld > gp.player.x - gp.screenWidth/2 - gp.tiLeSize && xWorld < gp.player.x + gp.screenWidth/2 + gp.tiLeSize && yWorld > gp.player.y - gp.screenHeight/2 - gp.tiLeSize && yWorld < gp.player.y + gp.screenHeight/2 + gp.tiLeSize){
+                    g2.drawImage(tiles[j][i].image,i * gp.tiLeSize - tmpI, j * gp.tiLeSize - tmpJ, gp.tiLeSize, gp.tiLeSize, null);
+                }
                 if (gp.keyH.vPressed) {
                     g2.setColor(Color.black);
-                    g2.drawRect(i * gp.tiLeSize - tmpi, j * gp.tiLeSize - tmpj, gp.tiLeSize, gp.tiLeSize);
+                    g2.drawRect(i * gp.tiLeSize - tmpI, j * gp.tiLeSize - tmpJ, gp.tiLeSize, gp.tiLeSize);
                 }
             }
         }
