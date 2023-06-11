@@ -49,7 +49,7 @@ public class Map {
                 int rand = (int)(Math.random() * 3);
                 TileEntity entity = TileEntity.values()[rand];
                 String res = entity.getRes();
-                tiles[j][i] = new Tile(res);
+                tiles[j][i] = new Tile(res, entity.getCode());
             }
         }
     }
@@ -67,7 +67,7 @@ public class Map {
             for (int i = 0; i < width; i++) {
                 TileEntity tEntity = TileEntity.fromCode(codes[j][i]);
                 String res = tEntity.getRes();
-                tiles[j][i] = new Tile(res);
+                tiles[j][i] = new Tile(res, tEntity.getCode());
             }
         }
     }
@@ -77,6 +77,10 @@ public class Map {
         for (int j = 0; j < height; j++) {
             for (int i = 0; i < width; i++) {
                 g2.drawImage(tiles[j][i].image,i * gp.tiLeSize - tmpi, j * gp.tiLeSize - tmpj, gp.tiLeSize, gp.tiLeSize, null);
+                if (gp.keyH.vPressed) {
+                    g2.setColor(Color.black);
+                    g2.drawRect(i * gp.tiLeSize - tmpi, j * gp.tiLeSize - tmpj, gp.tiLeSize, gp.tiLeSize);
+                }
             }
         }
     }
