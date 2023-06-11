@@ -14,10 +14,11 @@ public class Player extends Entity{
     public BufferedImage imageInstant;
     public Player(GPanel gp) {
         super(gp);
-        x = 25;
-        y = 27;
+        x = 25 * gp.tiLeSize;
+        y = 27 * gp.tiLeSize;
         xGraphic = gp.screenWidth/2 - gp.tiLeSize/2;
         yGraphic = gp.screenHeight/2 - gp.tiLeSize/2;
+        speed = 5;
         getImage();
         update();
     }
@@ -40,10 +41,10 @@ public class Player extends Entity{
     public void update() {
         imageInstant = still[spriteNum];
 
-        if(gp.keyH.leftPressed)   x-=0.1;
-        if(gp.keyH.rightPressed)  x++;
-        if(gp.keyH.upPressed)     y--;
-        if(gp.keyH.downPressed)   y++;
+        if(gp.keyH.leftPressed)   x-= speed;
+        if(gp.keyH.rightPressed)  x+= speed;
+        if(gp.keyH.upPressed)     y-= speed;
+        if(gp.keyH.downPressed)   y+= speed;
 
         spriteCounter++;
         if(spriteCounter > 10) {

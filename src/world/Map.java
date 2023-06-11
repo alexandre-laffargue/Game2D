@@ -73,7 +73,7 @@ public class Map {
     }
 
     public void draw(Graphics2D g2) {
-        int tmpi = gp.player.x * gp.tiLeSize - gp.player.xGraphic,tmpj = gp.player.y * gp.tiLeSize - gp.player.yGraphic;
+        int tmpi = gp.player.x - gp.player.xGraphic,tmpj = gp.player.y - gp.player.yGraphic;
         for (int j = 0; j < height; j++) {
             for (int i = 0; i < width; i++) {
                 g2.drawImage(tiles[j][i].image,i * gp.tiLeSize - tmpi, j * gp.tiLeSize - tmpj, gp.tiLeSize, gp.tiLeSize, null);
