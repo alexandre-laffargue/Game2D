@@ -1,5 +1,6 @@
 package world;
 
+import entity.Player;
 import main.GPanel;
 
 import java.awt.*;
@@ -73,13 +74,14 @@ public class Map {
     }
 
     public void draw(Graphics2D g2) {
-        int tmpI = gp.player.x - gp.player.xGraphic,tmpJ = gp.player.y - gp.player.yGraphic;
+        Player player = gp.players.get(0);
+        int tmpI = player.x - player.xGraphic,tmpJ = player.y - player.yGraphic;
         for (int j = 0; j < height; j++) {
             for (int i = 0; i < width; i++) {
 
                 int xWorld = i * gp.tiLeSize;
                 int yWorld = j * gp.tiLeSize;
-                if (xWorld > gp.player.x - gp.screenWidth/2 - gp.tiLeSize && xWorld < gp.player.x + gp.screenWidth/2 + gp.tiLeSize && yWorld > gp.player.y - gp.screenHeight/2 - gp.tiLeSize && yWorld < gp.player.y + gp.screenHeight/2 + gp.tiLeSize){
+                if (xWorld > player.x - gp.screenWidth/2 - gp.tiLeSize && xWorld < player.x + gp.screenWidth/2 + gp.tiLeSize && yWorld > player.y - gp.screenHeight/2 - gp.tiLeSize && yWorld < player.y + gp.screenHeight/2 + gp.tiLeSize){
                     g2.drawImage(tiles[j][i].image,i * gp.tiLeSize - tmpI, j * gp.tiLeSize - tmpJ, gp.tiLeSize, gp.tiLeSize, null);
                 }
                 if (gp.keyH.vPressed) {
