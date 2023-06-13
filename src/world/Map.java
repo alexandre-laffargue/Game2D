@@ -39,22 +39,6 @@ public class Map {
         }
     }
 
-    public Map(int width, int height, GPanel gp) {
-        this.gp = gp;
-        this.width = width;
-        this.height = height;
-        tiles = new Tile[height][width];
-        // rempli la carte aléatoirement avec les 3 types de tiles
-        for (int j = 0; j < height; j++) {
-            for (int i = 0; i < width; i++) {
-                int rand = (int)(Math.random() * 3);
-                TileEntity entity = TileEntity.values()[rand];
-                String res = entity.getRes();
-                tiles[j][i] = new Tile(res, entity.getCode());
-            }
-        }
-    }
-
     private void loadMap(String string){
         String[] lines = string.split(EOL);
         height = lines.length;
@@ -74,11 +58,11 @@ public class Map {
     }
 
     public void draw(Graphics2D g2) {
-        Player player = gp.players.get(0);
-        int tmpI = player.x - player.xGraphic,tmpJ = player.y - player.yGraphic;
+        Player player = gp.players.get(gp.playerIndex);
+        int tmpI = player.x + gp.tiLeSize/2 - player.xGraphic - (player.spriteDimX * player.spritescale)/2;
+        int tmpJ = player.y + gp.tiLeSize/2 - player.yGraphic - (player.spriteDimY * player.spritescale)/2;
         for (int j = 0; j < height; j++) {
             for (int i = 0; i < width; i++) {
-
                 int xWorld = i * gp.tiLeSize;
                 int yWorld = j * gp.tiLeSize;
                 if (xWorld > player.x - gp.screenWidth/2 - gp.tiLeSize && xWorld < player.x + gp.screenWidth/2 + gp.tiLeSize && yWorld > player.y - gp.screenHeight/2 - gp.tiLeSize && yWorld < player.y + gp.screenHeight/2 + gp.tiLeSize){

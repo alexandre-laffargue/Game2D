@@ -22,13 +22,19 @@ public class GPanel extends JPanel implements Runnable{
     public final int screenHeight = tiLeSize * maxScreenRow; // 864 pixels
 
 
-
+    // MECANICS
     public KeyHandler  keyH = new KeyHandler();
     public MouseHandler mouseH = new MouseHandler();
     public EvilEye evilEye = new EvilEye(this);
     public Human human = new Human(this);
     public ArrayList<Player> players = new ArrayList<Player>();
+    public int playerIndex = 0;
 
+    // VIEW
+
+    public boolean hitbox = false;
+
+    // GAME THREAD
     final int FPS = 60;
     public int drawFPS;
     Thread gameThread;
@@ -52,15 +58,16 @@ public class GPanel extends JPanel implements Runnable{
         Graphics2D g2 = (Graphics2D)(g);
 
         map.draw(g2);
-        players.get(0).draw(g2);
-        if(keyH.vPressed) drawhitbox(g2);
-        if(mouseH.leftPressed) players.get(0).drawlaser(g2);
+        players.get(playerIndex).draw(g2);
+        setHitBox(g2);
+        if(mouseH.leftPressed) players.get(playerIndex).drawlaser(g2);
     }
-
-    public void drawhitbox(Graphics2D g2) {
-        Player player = players.get(0);
-        g2.setColor(Color.RED);
-        g2.drawRect(player.xGraphic, player.yGraphic , tiLeSize, tiLeSize);
+    public void setHitBox(Graphics2D g2) {
+        if(keyH.vPressed) {
+            hitbox = true;
+        }
+        else
+            hitbox = false;
     }
 
 
@@ -111,7 +118,7 @@ public class GPanel extends JPanel implements Runnable{
         }
     }
     public void update() {
-        Player player = players.get(0);
+        Player player = players.get(playerIndex);
         player.update();
         if(mouseH.leftPressed) {
             laserTile(player);

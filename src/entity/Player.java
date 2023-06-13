@@ -31,21 +31,27 @@ public class Player extends Entity{
 
     public Player(GPanel gp) {
         super(gp);
-        setDefaultValues();
         setSpriteValues();
+        setDefaultValues();
     }
     public void setDefaultValues() {
         x = xSpawn * gp.tiLeSize; // pixel on the map
         y = ySpawn * gp.tiLeSize; // pixel on the map
-        xGraphic = gp.screenWidth/2 - spriteDimX/2; // pixel on the screen top left corner of the sprite
-        yGraphic = gp.screenHeight/2 - spriteDimY/2; // pixel on the screen top left corner of the sprite
+        System.out.println("spriteDimX = " + spriteDimX + " spriteDimY = " + spriteDimY);
+        xGraphic = gp.screenWidth/2 - (spriteDimX * spritescale)/2; // pixel on the screen top left corner of the sprite
+        yGraphic = gp.screenHeight/2 - (spriteDimY * spritescale)/2; // pixel on the screen top left corner of the sprite
         speed = 5;
     }
     public void setSpriteValues() {
     }
     public void draw(Graphics2D g2) {
         g2.drawImage(imageInstant, xGraphic, yGraphic,gp.tiLeSize * spritescale, gp.tiLeSize * spritescale,  null);
+        if (gp.hitbox) {
+            g2.setColor(Color.RED);
+            g2.drawRect(xGraphic, yGraphic, gp.tiLeSize * spritescale, gp.tiLeSize * spritescale);
+        }
     }
+
 
     public void drawlaser(Graphics2D g2) {
     }

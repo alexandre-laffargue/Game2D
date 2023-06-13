@@ -18,8 +18,8 @@ public class Human extends Player {
         update();
     }
     public void setSpriteValues() {
-        spriteDimX = 16;
-        spriteDimY = 16;
+        spriteDimX = 48;
+        spriteDimY = 48;
         spriteNumberAnimation = 13; // 13 animation (idle, walk, hit, die)
         spriteNumber = new int[spriteNumberAnimation];
         for (int i = 0; i < 8; i++) {
