@@ -4,6 +4,7 @@ import entity.Player;
 import main.GPanel;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -87,6 +88,51 @@ public class Human extends Player {
                 }
             }
         }
+    }
+    public void drawlaser(Graphics2D g2) {
+        int x1 = xGraphic + (spriteDimX * spritescale)/2, y1 = yGraphic + (spriteDimY * spritescale)/2;
+
+        int x2 = xGraphic + (spriteDimX * spritescale)/2, y2 = yGraphic + (spriteDimY * spritescale)/2;
+
+        switch (directionInstant) {
+            case 0:
+                x1 += -4;
+                y1 += 23;
+                x2 += 6;
+                y2 += 23;
+                break;
+            case 1:
+                x1 += -4;
+                y1 += -4;
+                x2 += 6;
+                y2 += -4;
+                break;
+            case 2:
+                x1 += -16;
+                y1 += 23;
+                x2 += -6;
+                y2 += 23;
+                break;
+            case 3:
+                x1 += 16;
+                y1 += 23;
+                x2 += 6;
+                y2 += 23;
+                break;
+
+        }
+        g2.setStroke(new BasicStroke(5));
+        g2.setColor(Color.RED);
+        g2.drawLine(x1, y1, gp.mouseH.x, gp.mouseH.y);
+        g2.drawLine(x2, y2, gp.mouseH.x, gp.mouseH.y);
+        g2.setStroke(new BasicStroke(2));
+        g2.setColor(Color.YELLOW);
+        g2.drawLine(x1, y1, gp.mouseH.x, gp.mouseH.y);
+        g2.drawLine(x2, y2, gp.mouseH.x, gp.mouseH.y);
+        g2.setStroke(new BasicStroke(0.5F));
+        g2.setColor(Color.WHITE);
+        g2.drawLine(x1, y1, gp.mouseH.x, gp.mouseH.y);
+        g2.drawLine(x2, y2, gp.mouseH.x, gp.mouseH.y);
     }
 
     public void update() {

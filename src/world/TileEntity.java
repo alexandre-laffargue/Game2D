@@ -4,33 +4,33 @@ import java.util.Objects;
 
 public enum TileEntity {
     //toutes les images du dossier tiles
-    WATER0("W0", "/tiles/water0.png"),
-    WATER1("W1", "/tiles/water1.png"),
-    WATER2("W2", "/tiles/water2.png"),
-    WATER3("W3", "/tiles/water3.png"),
-    WATER4("W4", "/tiles/water4.png"),
-    WATER5("W5", "/tiles/water5.png"),
-    WATER6("W6", "/tiles/water6.png"),
-    WATER7("W7", "/tiles/water7.png"),
-    WATER8("W8", "/tiles/water8.png"),
-    WATER9("W9", "/tiles/water9.png"),
-    WATER10("W10", "/tiles/water10.png"),
-    WATER11("W11", "/tiles/water11.png"),
-    WATER12("W12", "/tiles/water12.png"),
-    WATER13("W13", "/tiles/water13.png"),
-    WATER14("W14", "/tiles/water14.png"),
-    WATER15("W15", "/tiles/water15.png"),
-    WATER16("W16", "/tiles/water16.png"),
-    WATER17("W17", "/tiles/water17.png"),
-    WATER18("W18", "/tiles/water18.png"),
-    WATER19("W19", "/tiles/water19.png"),
-    WATER20("W20", "/tiles/water20.png"),
-    WATER21("W21", "/tiles/water21.png"),
-    WATER22("W22", "/tiles/water22.png"),
-    WATER23("W23", "/tiles/water23.png"),
-    WATER24("W24", "/tiles/water24.png"),
-    WATER25("W25", "/tiles/water25.png"),
-    WATER26("W26", "/tiles/water26.png"),
+    WATER0("W0", "/tiles/water0.png", true),
+    WATER1("W1", "/tiles/water1.png", true),
+    WATER2("W2", "/tiles/water2.png", true),
+    WATER3("W3", "/tiles/water3.png", true),
+    WATER4("W4", "/tiles/water4.png", true),
+    WATER5("W5", "/tiles/water5.png", true),
+    WATER6("W6", "/tiles/water6.png", true),
+    WATER7("W7", "/tiles/water7.png", true),
+    WATER8("W8", "/tiles/water8.png", true),
+    WATER9("W9", "/tiles/water9.png", true),
+    WATER10("W10", "/tiles/water10.png", true),
+    WATER11("W11", "/tiles/water11.png", true),
+    WATER12("W12", "/tiles/water12.png", true),
+    WATER13("W13", "/tiles/water13.png", true),
+    WATER14("W14", "/tiles/water14.png", true),
+    WATER15("W15", "/tiles/water15.png", true),
+    WATER16("W16", "/tiles/water16.png", true),
+    WATER17("W17", "/tiles/water17.png", true),
+    WATER18("W18", "/tiles/water18.png", true),
+    WATER19("W19", "/tiles/water19.png", true),
+    WATER20("W20", "/tiles/water20.png", true),
+    WATER21("W21", "/tiles/water21.png", true),
+    WATER22("W22", "/tiles/water22.png", true),
+    WATER23("W23", "/tiles/water23.png", true),
+    WATER24("W24", "/tiles/water24.png", true),
+    WATER25("W25", "/tiles/water25.png", true),
+    WATER26("W26", "/tiles/water26.png", true),
 
     GRASS0("G0", "/tiles/grass.png"),
 
@@ -57,30 +57,30 @@ public enum TileEntity {
     PLAINS20("P20", "/tiles/plains20.png"),
     PLAINS21("P21", "/tiles/plains21.png"),
 
-    WATERDIRT1("WD1", "/tiles/waterdirt1.png"),
-    WATERDIRT2("WD2", "/tiles/waterdirt2.png"),
-    WATERDIRT3("WD3", "/tiles/waterdirt3.png"),
-    WATERDIRT4("WD4", "/tiles/waterdirt4.png"),
-    WATERDIRT5("WD5", "/tiles/waterdirt5.png"),
-    WATERDIRT6("WD6", "/tiles/waterdirt6.png"),
-    WATERDIRT7("WD7", "/tiles/waterdirt7.png"),
-    WATERDIRT8("WD8", "/tiles/waterdirt8.png"),
-    WATERDIRT9("WD9", "/tiles/waterdirt9.png"),
-    WATERDIRT10("WD10", "/tiles/waterdirt10.png"),
-    WATERDIRT11("WD11", "/tiles/waterdirt11.png"),
-    WATERDIRT12("WD12", "/tiles/waterdirt12.png"),
-    WATERDIRT13("WD13", "/tiles/waterdirt13.png"),
-    WATERDIRT14("WD14", "/tiles/waterdirt14.png"),
-    WATERDIRT15("WD15", "/tiles/waterdirt15.png"),
-    WATERDIRT16("WD16", "/tiles/waterdirt16.png"),
-    WATERDIRT17("WD17", "/tiles/waterdirt17.png"),
-    WATERDIRT18("WD18", "/tiles/waterdirt18.png"),
-    WATERDIRT19("WD19", "/tiles/waterdirt19.png"),
-    WATERDIRT20("WD20", "/tiles/waterdirt20.png"),
-    WATERDIRT21("WD21", "/tiles/waterdirt21.png"),
-    WATERDIRT22("WD22", "/tiles/waterdirt22.png"),
-    WATERDIRT23("WD23", "/tiles/waterdirt23.png"),
-    WATERDIRT24("WD24", "/tiles/waterdirt24.png"),
+    WATERDIRT1("WD1", "/tiles/waterdirt1.png", true),
+    WATERDIRT2("WD2", "/tiles/waterdirt2.png", true),
+    WATERDIRT3("WD3", "/tiles/waterdirt3.png", true),
+    WATERDIRT4("WD4", "/tiles/waterdirt4.png", true),
+    WATERDIRT5("WD5", "/tiles/waterdirt5.png", true),
+    WATERDIRT6("WD6", "/tiles/waterdirt6.png", true),
+    WATERDIRT7("WD7", "/tiles/waterdirt7.png", true),
+    WATERDIRT8("WD8", "/tiles/waterdirt8.png", true),
+    WATERDIRT9("WD9", "/tiles/waterdirt9.png", true),
+    WATERDIRT10("WD10", "/tiles/waterdirt10.png", true),
+    WATERDIRT11("WD11", "/tiles/waterdirt11.png", true),
+    WATERDIRT12("WD12", "/tiles/waterdirt12.png", true),
+    WATERDIRT13("WD13", "/tiles/waterdirt13.png", true),
+    WATERDIRT14("WD14", "/tiles/waterdirt14.png", true),
+    WATERDIRT15("WD15", "/tiles/waterdirt15.png", true),
+    WATERDIRT16("WD16", "/tiles/waterdirt16.png", true),
+    WATERDIRT17("WD17", "/tiles/waterdirt17.png", true),
+    WATERDIRT18("WD18", "/tiles/waterdirt18.png", true),
+    WATERDIRT19("WD19", "/tiles/waterdirt19.png", true),
+    WATERDIRT20("WD20", "/tiles/waterdirt20.png", true),
+    WATERDIRT21("WD21", "/tiles/waterdirt21.png", true),
+    WATERDIRT22("WD22", "/tiles/waterdirt22.png", true),
+    WATERDIRT23("WD23", "/tiles/waterdirt23.png", true),
+    WATERDIRT24("WD24", "/tiles/waterdirt24.png", true),
 
     WAY0("WY0", "/tiles/way0.png"),
     WAY1("WY1", "/tiles/way1.png"),
@@ -96,22 +96,29 @@ public enum TileEntity {
     WAY11("WY11", "/tiles/way11.png"),
     WAY12("WY12", "/tiles/way12.png"),
 
-    BLACKTREE("BT", "/tiles/blacktree.png"),
+    BLACKTREE("BT", "/tiles/blacktree.png", true),
     DEADTREE("DT", "/tiles/deadtree.png"),
-    REDTREE("RT", "/tiles/redtree.png"),
-    YELLOWTREE("YT", "/tiles/yellowtree.png");
+    REDTREE("RT", "/tiles/redtree.png", true),
+    YELLOWTREE("YT", "/tiles/yellowtree.png", true);
 
     private final String code;
     private final String res;
-
+    private boolean collision = false;
     TileEntity(String c, String r) {
         this.code = c;
         this.res = r;
     }
 
+    TileEntity(String c, String r, boolean collision) {
+        this.code = c;
+        this.res = r;
+        this.collision = collision;
+    }
+
     public String getCode() { return this.code; }
 
     public String getRes() { return this.res; }
+    public boolean isCollision() { return this.collision; }
 
     public static TileEntity fromCode(String s) {
         for (TileEntity entity : values()) {

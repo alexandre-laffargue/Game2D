@@ -51,16 +51,15 @@ public class Map {
         for (int j = 0; j < height; j++) {
             for (int i = 0; i < width; i++) {
                 TileEntity tEntity = TileEntity.fromCode(codes[j][i]);
-                String res = tEntity.getRes();
-                tiles[j][i] = new Tile(res, tEntity.getCode());
+                tiles[j][i] = new Tile(tEntity);
             }
         }
     }
 
     public void draw(Graphics2D g2) {
         Player player = gp.players.get(gp.playerIndex);
-        int tmpI = player.x + gp.tiLeSize/2 - player.xGraphic - (player.spriteDimX * player.spritescale)/2;
-        int tmpJ = player.y + gp.tiLeSize/2 - player.yGraphic - (player.spriteDimY * player.spritescale)/2;
+        int tmpI = player.x + /*gp.tiLeSize/2*/ - player.xGraphic - (player.spriteDimX * player.spritescale)/2;
+        int tmpJ = player.y + /*gp.tiLeSize/2*/ - player.yGraphic - (player.spriteDimY * player.spritescale)/2;
         for (int j = 0; j < height; j++) {
             for (int i = 0; i < width; i++) {
                 int xWorld = i * gp.tiLeSize;
@@ -68,9 +67,17 @@ public class Map {
                 if (xWorld > player.x - gp.screenWidth/2 - gp.tiLeSize && xWorld < player.x + gp.screenWidth/2 + gp.tiLeSize && yWorld > player.y - gp.screenHeight/2 - gp.tiLeSize && yWorld < player.y + gp.screenHeight/2 + gp.tiLeSize){
                     g2.drawImage(tiles[j][i].image,i * gp.tiLeSize - tmpI, j * gp.tiLeSize - tmpJ, gp.tiLeSize, gp.tiLeSize, null);
                 }
-                if (gp.keyH.vPressed) {
+                if (gp.hitbox) {
+                    // draw line
                     g2.setColor(Color.black);
                     g2.drawRect(i * gp.tiLeSize - tmpI, j * gp.tiLeSize - tmpJ, gp.tiLeSize, gp.tiLeSize);
+                    // draw collision
+                    if (tiles[j][i].collision) {
+                        g2.setColor(Color.RED);
+                        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+                        g2.fillRect(i * gp.tiLeSize - tmpI, j * gp.tiLeSize - tmpJ, gp.tiLeSize, gp.tiLeSize);
+                        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+                    }
                 }
             }
         }

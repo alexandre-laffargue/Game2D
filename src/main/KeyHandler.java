@@ -54,7 +54,7 @@ public class KeyHandler implements KeyListener {
             fPressed = false;
         }
         if (key == KeyEvent.VK_V) {
-            vPressed = false;
+//            vPressed = false;
         }
     }
 }

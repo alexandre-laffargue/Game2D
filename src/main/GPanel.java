@@ -15,7 +15,9 @@ public class GPanel extends JPanel implements Runnable{
 
     public Map map = new Map("res/maptest.txt", this);
     // SCREEN SETTINGS
-    public final int tiLeSize = 48;
+    public final int tileSizeOriginal = 16;
+    public final int scale = 3;
+    public final int tiLeSize = tileSizeOriginal * scale;
     public final int maxScreenCol = 32;
     public final int maxScreenRow = 18;
     public final int screenWidth = tiLeSize * maxScreenCol; // 1536 pixels
@@ -25,6 +27,7 @@ public class GPanel extends JPanel implements Runnable{
     // MECANICS
     public KeyHandler  keyH = new KeyHandler();
     public MouseHandler mouseH = new MouseHandler();
+    public CollisionChecker cChecker = new CollisionChecker(this);
     public EvilEye evilEye = new EvilEye(this);
     public Human human = new Human(this);
     public ArrayList<Player> players = new ArrayList<Player>();
@@ -61,13 +64,15 @@ public class GPanel extends JPanel implements Runnable{
         players.get(playerIndex).draw(g2);
         setHitBox(g2);
         if(mouseH.leftPressed) players.get(playerIndex).drawlaser(g2);
+        if(mouseH.leftPressed) {
+            laserTile(players.get(playerIndex), g2);
+        }
     }
     public void setHitBox(Graphics2D g2) {
         if(keyH.vPressed) {
-            hitbox = true;
+            hitbox = !hitbox;
+            keyH.vPressed = false;
         }
-        else
-            hitbox = false;
     }
 
 
@@ -98,9 +103,11 @@ public class GPanel extends JPanel implements Runnable{
         gameThread = new Thread(this);
         gameThread.start();
     }
-    public void laserTile( Player player){
-        int mouseTileX = (player.x - player.xGraphic + mouseH.x)/tiLeSize;
-        int mouseTileY = (player.y - player.yGraphic + mouseH.y)/tiLeSize;
+    public void laserTile(Player player, Graphics2D g2){
+        int mouseTileX = (player.x - screenWidth/2 + mouseH.x)/tiLeSize;
+        int mouseTileY = (player.y - screenHeight/2 + mouseH.y)/tiLeSize;
+        g2.drawRect(mouseTileX*tiLeSize -(player.x + /*gp.tiLeSize/2*/ - player.xGraphic - (player.spriteDimX * player.spritescale)/2), mouseTileY*tiLeSize - (player.y + /*gp.tiLeSize/2*/ - player.yGraphic - (player.spriteDimY * player.spritescale)/2) , 5, 5);
+
 
         switch (map.tiles[mouseTileY][mouseTileX].code) {
             case "YT":
@@ -120,8 +127,6 @@ public class GPanel extends JPanel implements Runnable{
     public void update() {
         Player player = players.get(playerIndex);
         player.update();
-        if(mouseH.leftPressed) {
-            laserTile(player);
-        }
+
     }
 }
