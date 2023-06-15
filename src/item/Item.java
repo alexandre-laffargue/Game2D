@@ -1,4 +1,4 @@
-package object;
+package item;
 
 import entity.Player;
 import main.GPanel;
@@ -6,19 +6,18 @@ import main.GPanel;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class SuperObject {
-
-    // SPRITES
+public class Item {
     public BufferedImage[] images; // [spriteNum]
     public int spriteNumber;
     public int width = 16, height = 16;
     public float spritescale = 1;
 
     // SPRITE ANIMATION
+    public int spriteCounter = 0;
+    public int spriteNum = 0;
     public BufferedImage imageInstant;
 
     public String name;
-    public boolean collision = true;
     public int xMap, yMap;
 
     public void draw(Graphics2D g2, GPanel gp) {
@@ -37,18 +36,7 @@ public class SuperObject {
 
     public void mecanicImage() {
     }
-    public void open() {
-    }
-
-
-    public boolean isopen() {
-        return false;
-    }
-    public void take() {
-    }
 
     public void update() {
-
     }
-
 }

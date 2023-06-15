@@ -3,6 +3,8 @@ package main;
 import entity.Player;
 import entity.player.EvilEye;
 import entity.player.Human;
+import item.Item;
+import object.OBJ_Chest;
 import object.SuperObject;
 import world.Map;
 import world.Tile;
@@ -34,6 +36,8 @@ public class GPanel extends JPanel implements Runnable{
     public ArrayList<Player> players = new ArrayList<Player>();
     public int playerIndex = 0;
     public ArrayList<SuperObject> objects = new ArrayList<SuperObject>();
+    public ArrayList<Item> items = new ArrayList<Item>();
+
     public AssetSetter aSetter = new AssetSetter(this);
 
     // VIEW
@@ -57,6 +61,7 @@ public class GPanel extends JPanel implements Runnable{
 
     public void setupGame() {
         aSetter.setObject();
+        aSetter.setItems();
     }
 
     void setPlayers() {
@@ -73,6 +78,10 @@ public class GPanel extends JPanel implements Runnable{
         // OBJECT
         for (SuperObject object : objects) {
             object.draw(g2, this);
+        }
+        // ITEM
+        for (Item item : items) {
+            item.draw(g2, this);
         }
 
         // PLAYER
@@ -148,6 +157,21 @@ public class GPanel extends JPanel implements Runnable{
         for (SuperObject object : objects) {
             object.update();
         }
+        for (Item item : items) {
+            item.update();
+        }
+        openChest();
 
+    }
+
+    public void openChest() {
+        if (keyH.ePressed) {
+            if (!objects.get(2).isopen()) {
+                objects.get(2).open();
+            }
+            else objects.get(2).take();
+            keyH.ePressed = false;
+
+        }
     }
 }

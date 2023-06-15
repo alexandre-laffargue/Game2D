@@ -21,16 +21,15 @@ public class Human extends Player {
     public void setSpriteValues() {
         spriteDimX = 48;
         spriteDimY = 48;
-        spriteNumberAnimation = 13; // 13 animation (idle, walk, hit, die)
+        spriteNumberAnimation = 17; // 13 animation (idle, walk, hit, die)
         spriteNumber = new int[spriteNumberAnimation];
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 12; i++) {
             spriteNumber[i] = 6;
         }
-        for (int i = 8; i < 12; i++) {
+        for (int i = 12; i < 16; i++) {
             spriteNumber[i] = 4;
         }
-        spriteNumber[12] = 3;
-
+        spriteNumber[16] = 3;
         images = new BufferedImage[spriteNumberAnimation][];
         spritescale = 3;
     }
@@ -45,11 +44,15 @@ public class Human extends Player {
         paths[5] = "/players/human1/walk/up/u";
         paths[6] = "/players/human1/walk/left/l";
         paths[7] = "/players/human1/walk/right/r";
-        paths[8] = "/players/human1/hit/down/d";
-        paths[9] = "/players/human1/hit/up/u";
-        paths[10] = "/players/human1/hit/left/l";
-        paths[11] = "/players/human1/hit/right/r";
-        paths[12] = "/players/human1/die/";
+        paths[8] = "/players/human1/walk/left/l";
+        paths[9] = "/players/human1/walk/right/r";
+        paths[10] = "/players/human1/walk/left/l";
+        paths[11] = "/players/human1/walk/right/r";
+        paths[12] = "/players/human1/hit/down/d";
+        paths[13] = "/players/human1/hit/up/u";
+        paths[14] = "/players/human1/hit/left/l";
+        paths[15] = "/players/human1/hit/right/r";
+        paths[16] = "/players/human1/die/";
     }
 
     public void getImage() {
@@ -59,7 +62,6 @@ public class Human extends Player {
                 try {
                     BufferedImage image = ImageIO.read(getClass().getResourceAsStream(paths[indexanimation] + (i+1) + ".png"));
                     images[indexanimation][i] = image;
-                    //System.out.println(paths[indexanimation] + (i+1) + ".png");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -77,7 +79,7 @@ public class Human extends Player {
             imageInstant = images[direction + Animation * 4][spriteNum];
         }
         else {
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < 8; i++) {
                 if (direction == i) {
                     if (spriteCounter > 10 - Animation * 3) {
                         if (spriteNum == spriteNumber[i+Animation * 4] - 1) spriteNum = 0;

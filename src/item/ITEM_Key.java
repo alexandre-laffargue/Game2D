@@ -1,12 +1,14 @@
-package object;
+package item;
+
+import object.SuperObject;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class OBJ_Key extends SuperObject{
+public class ITEM_Key extends Item {
 
-    public OBJ_Key() {
+    public ITEM_Key() {
         name = "Key";
         setValues();
         getImage();
@@ -14,13 +16,15 @@ public class OBJ_Key extends SuperObject{
 
     public void setValues() {
         spriteNumber = 7;
+        height = 32;
+        spritescale = 1/2f;
     }
 
     public void getImage() {
         images = new BufferedImage[spriteNumber];
         for (int i = 0; i < spriteNumber; i++) {
             try {
-                images[i] = ImageIO.read(getClass().getResourceAsStream("/objects/key/" + (i) + ".png"));
+                images[i] = ImageIO.read(getClass().getResourceAsStream("/items/key/" + (i) + ".png"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
