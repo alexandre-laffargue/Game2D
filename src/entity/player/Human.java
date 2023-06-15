@@ -89,6 +89,12 @@ public class Human extends Player {
             }
         }
     }
+
+    public void update() {
+        move();
+        mecanicImage();
+        setWalking();
+    }
     public void drawlaser(Graphics2D g2) {
         int x1 = xGraphic + (spriteDimX * spritescale)/2, y1 = yGraphic + (spriteDimY * spritescale)/2;
 
@@ -133,12 +139,6 @@ public class Human extends Player {
         g2.setColor(Color.WHITE);
         g2.drawLine(x1, y1, gp.mouseH.x, gp.mouseH.y);
         g2.drawLine(x2, y2, gp.mouseH.x, gp.mouseH.y);
-    }
-
-    public void update() {
-        move();
-        mecanicImage();
-        setWalking();
     }
 
 }

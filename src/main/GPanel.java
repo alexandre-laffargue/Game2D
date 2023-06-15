@@ -3,6 +3,7 @@ package main;
 import entity.Player;
 import entity.player.EvilEye;
 import entity.player.Human;
+import object.SuperObject;
 import world.Map;
 import world.Tile;
 import world.TileEntity;
@@ -32,6 +33,8 @@ public class GPanel extends JPanel implements Runnable{
     public Human human = new Human(this);
     public ArrayList<Player> players = new ArrayList<Player>();
     public int playerIndex = 0;
+    public ArrayList<SuperObject> objects = new ArrayList<SuperObject>();
+    public AssetSetter aSetter = new AssetSetter(this);
 
     // VIEW
 
@@ -48,10 +51,15 @@ public class GPanel extends JPanel implements Runnable{
         this.addMouseListener(mouseH);
         this.addMouseMotionListener(mouseH);
         this.setFocusable(true);
-        selectPlayer();
+        setPlayers();
+        setupGame();
     }
 
-    void selectPlayer() {
+    public void setupGame() {
+        aSetter.setObject();
+    }
+
+    void setPlayers() {
         players.add(human);
         players.add(evilEye);
     }
@@ -59,14 +67,24 @@ public class GPanel extends JPanel implements Runnable{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)(g);
-
+        // TILE
         map.draw(g2);
-        players.get(playerIndex).draw(g2);
-        setHitBox(g2);
-        if(mouseH.leftPressed) players.get(playerIndex).drawlaser(g2);
-        if(mouseH.leftPressed) {
-            laserTile(players.get(playerIndex), g2);
+
+        // OBJECT
+        for (SuperObject object : objects) {
+            object.draw(g2, this);
         }
+
+        // PLAYER
+        players.get(playerIndex).draw(g2);
+
+        // OPTION
+        setHitBox(g2);
+
+        //
+        if(mouseH.leftPressed) players.get(playerIndex).drawlaser(g2);
+        if(mouseH.leftPressed) laserTile(players.get(playerIndex), g2);
+
     }
     public void setHitBox(Graphics2D g2) {
         if(keyH.vPressed) {
@@ -104,9 +122,9 @@ public class GPanel extends JPanel implements Runnable{
         gameThread.start();
     }
     public void laserTile(Player player, Graphics2D g2){
-        int mouseTileX = (player.x - screenWidth/2 + mouseH.x)/tiLeSize;
-        int mouseTileY = (player.y - screenHeight/2 + mouseH.y)/tiLeSize;
-        g2.drawRect(mouseTileX*tiLeSize -(player.x + /*gp.tiLeSize/2*/ - player.xGraphic - (player.spriteDimX * player.spritescale)/2), mouseTileY*tiLeSize - (player.y + /*gp.tiLeSize/2*/ - player.yGraphic - (player.spriteDimY * player.spritescale)/2) , 5, 5);
+        int mouseTileX = (player.xMap - screenWidth/2 + mouseH.x)/tiLeSize;
+        int mouseTileY = (player.yMap - screenHeight/2 + mouseH.y)/tiLeSize;
+        g2.drawRect(mouseTileX*tiLeSize -(player.xMap + /*gp.tiLeSize/2*/ - player.xGraphic - (player.spriteDimX * player.spritescale)/2), mouseTileY*tiLeSize - (player.yMap + /*gp.tiLeSize/2*/ - player.yGraphic - (player.spriteDimY * player.spritescale)/2) , 5, 5);
 
 
         switch (map.tiles[mouseTileY][mouseTileX].code) {
@@ -127,6 +145,9 @@ public class GPanel extends JPanel implements Runnable{
     public void update() {
         Player player = players.get(playerIndex);
         player.update();
+        for (SuperObject object : objects) {
+            object.update();
+        }
 
     }
 }

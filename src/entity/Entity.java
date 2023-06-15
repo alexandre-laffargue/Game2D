@@ -3,11 +3,10 @@ package entity;
 import main.GPanel;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public class Entity {
     public final GPanel gp;
-    public int x, y;
+    public int xMap, yMap;
     public Rectangle solidArea;
     public boolean collisionOn = false;
     public boolean move = false;

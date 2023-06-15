@@ -2,11 +2,8 @@ package entity;
 
 import main.GPanel;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.Objects;
 
 public class Player extends Entity{
     // COORDINATES
@@ -39,8 +36,8 @@ public class Player extends Entity{
         solidArea.height = 9 * gp.scale;
     }
     public void setDefaultValues() {
-        x = (int)(xSpawn * gp.tiLeSize); // pixel on the map
-        y = (int)(ySpawn * gp.tiLeSize); // pixel on the map
+        xMap = (int)(xSpawn * gp.tiLeSize); // pixel on the map
+        yMap = (int)(ySpawn * gp.tiLeSize); // pixel on the map
         xGraphic = gp.screenWidth/2 - (spriteDimX * spritescale)/2; // pixel on the screen top left corner of the sprite
         yGraphic = gp.screenHeight/2 - (spriteDimY * spritescale)/2; // pixel on the screen top left corner of the sprite
         speed = 5;
@@ -109,32 +106,32 @@ public class Player extends Entity{
 
             switch (direction) {
                 case 0:
-                    y += speed;
+                    yMap += speed;
                     break;
                 case 1:
-                    y -= speed;
+                    yMap -= speed;
                     break;
                 case 2:
-                    x -= speed;
+                    xMap -= speed;
                     break;
                 case 3:
-                    x += speed;
+                    xMap += speed;
                     break;
                 case 4:
-                    y += speed/Math.sqrt(2);
-                    x -= speed/Math.sqrt(2);
+                    yMap += speed/Math.sqrt(2);
+                    xMap -= speed/Math.sqrt(2);
                     break;
                 case 5:
-                    y += speed/Math.sqrt(2);
-                    x += speed/Math.sqrt(2);
+                    yMap += speed/Math.sqrt(2);
+                    xMap += speed/Math.sqrt(2);
                     break;
                 case 6:
-                    y -= speed/Math.sqrt(2);
-                    x -= speed/Math.sqrt(2);
+                    yMap -= speed/Math.sqrt(2);
+                    xMap -= speed/Math.sqrt(2);
                     break;
                 case 7:
-                    y -= speed/Math.sqrt(2);
-                    x += speed/Math.sqrt(2);
+                    yMap -= speed/Math.sqrt(2);
+                    xMap += speed/Math.sqrt(2);
                     break;
             }
         }

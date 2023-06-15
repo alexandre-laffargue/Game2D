@@ -12,10 +12,10 @@ public class CollisionChecker {
 
     public void checkTile(Entity entity) {
 
-        int entityLeftWorldX = entity.x - (entity.spriteDimX * entity.spritescale)/2 + entity.solidArea.x;
-        int entityRightWorldX = entity.x - (entity.spriteDimX * entity.spritescale)/2 + entity.solidArea.x  + entity.solidArea.width;
-        int entityTopWorldY = entity.y - (entity.spriteDimY * entity.spritescale)/2 + entity.solidArea.y;
-        int entityBottomWorldY = entity.y - (entity.spriteDimY * entity.spritescale)/2 + entity.solidArea.y + entity.solidArea.height;
+        int entityLeftWorldX = entity.xMap - (entity.spriteDimX * entity.spritescale)/2 + entity.solidArea.x;
+        int entityRightWorldX = entity.xMap - (entity.spriteDimX * entity.spritescale)/2 + entity.solidArea.x  + entity.solidArea.width;
+        int entityTopWorldY = entity.yMap - (entity.spriteDimY * entity.spritescale)/2 + entity.solidArea.y;
+        int entityBottomWorldY = entity.yMap - (entity.spriteDimY * entity.spritescale)/2 + entity.solidArea.y + entity.solidArea.height;
 
         int entityLeftCol = entityLeftWorldX/gp.tiLeSize;
         int entityRightCol = entityRightWorldX/gp.tiLeSize;
