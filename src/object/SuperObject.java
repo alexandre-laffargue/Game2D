@@ -18,8 +18,9 @@ public class SuperObject {
     public BufferedImage imageInstant;
 
     public String name;
-    public boolean collision = true;
     public int xMap, yMap;
+    public boolean collision = true;
+    public Rectangle soldidArea = new Rectangle(0,0,48,48);
 
     public void draw(Graphics2D g2, GPanel gp) {
         Player player = gp.players.get(gp.playerIndex);
@@ -32,6 +33,12 @@ public class SuperObject {
                 yMap > player.yMap - gp.screenHeight/2 - gp.tiLeSize &&
                 yMap < player.yMap + gp.screenHeight/2 + gp.tiLeSize) {
             g2.drawImage(imageInstant, xScreen, yScreen, (int)(width * gp.scale * spritescale), (int)(height * gp.scale * spritescale), null);
+            if (gp.hitbox) {
+                g2.setColor(Color.MAGENTA);
+                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+                g2.fillRect(xScreen + soldidArea.x, yScreen + soldidArea.y, soldidArea.width, soldidArea.height);
+                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+            }
         }
     }
 
