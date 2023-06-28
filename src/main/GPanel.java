@@ -31,12 +31,12 @@ public class GPanel extends JPanel implements Runnable{
     public KeyHandler  keyH = new KeyHandler();
     public MouseHandler mouseH = new MouseHandler();
     public CollisionChecker cChecker = new CollisionChecker(this);
+    public ArrayList<SuperObject> objects = new ArrayList<SuperObject>();
+    public ArrayList<Item> items = new ArrayList<Item>();
     public EvilEye evilEye = new EvilEye(this);
     public Human human = new Human(this);
     public ArrayList<Player> players = new ArrayList<Player>();
     public int playerIndex = 0;
-    public ArrayList<SuperObject> objects = new ArrayList<SuperObject>();
-    public ArrayList<Item> items = new ArrayList<Item>();
 
     public AssetSetter aSetter = new AssetSetter(this);
 

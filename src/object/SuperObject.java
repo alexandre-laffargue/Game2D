@@ -20,7 +20,7 @@ public class SuperObject {
     public String name;
     public int xMap, yMap;
     public boolean collision = true;
-    public Rectangle soldidArea = new Rectangle(0,0,48,48);
+    public Rectangle solidArea = new Rectangle(0,0,48,48);
 
     public void draw(Graphics2D g2, GPanel gp) {
         Player player = gp.players.get(gp.playerIndex);
@@ -36,7 +36,7 @@ public class SuperObject {
             if (gp.hitbox) {
                 g2.setColor(Color.MAGENTA);
                 g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
-                g2.fillRect(xScreen + soldidArea.x, yScreen + soldidArea.y, soldidArea.width, soldidArea.height);
+                g2.fillRect(xScreen + solidArea.x, yScreen + solidArea.y, solidArea.width, solidArea.height);
                 g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
             }
         }

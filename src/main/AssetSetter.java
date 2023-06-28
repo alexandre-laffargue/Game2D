@@ -22,6 +22,10 @@ public class AssetSetter {
         gp.objects.add(new OBJ_Chest());
         gp.objects.get(2).xMap = 20 * gp.tiLeSize;
         gp.objects.get(2).yMap = 27 * gp.tiLeSize;
+
+        gp.objects.add(new OBJ_Chest());
+        gp.objects.get(2).xMap = 0 * gp.tiLeSize;
+        gp.objects.get(2).yMap = 0 * gp.tiLeSize;
     }
 
     public void setItems() {

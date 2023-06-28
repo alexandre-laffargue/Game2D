@@ -76,8 +76,63 @@ public class CollisionChecker {
                     entity.collisionOn = true;
                 }
                 break;
-
-
         }
+    }
+
+    public int checkObject(Entity entity, boolean player) {
+
+        int index = -1;
+
+        for (int i = 0; i < gp.objects.size(); i++) {
+
+            int lastX = entity.solidArea.x, lastY = entity.solidArea.y;
+            entity.solidArea.x = entity.xMap;
+            entity.solidArea.y = entity.yMap;
+
+            gp.objects.get(i).solidArea.x += gp.objects.get(i).xMap;
+            gp.objects.get(i).solidArea.y += gp.objects.get(i).yMap;
+
+            switch (entity.direction) {
+                case 0:
+                    System.out.println("y:" + entity.solidArea.y + " x:" + entity.solidArea.x + "  " + gp.objects.get(i).solidArea.y);
+                    entity.solidArea.y += entity.speed;
+                    if (entity.solidArea.intersects(gp.objects.get(i).solidArea)) {
+                        //System.out.println("down collision");
+                        index = i;
+                    }
+                    entity.solidArea.y -= entity.speed;
+                    break;
+                case 1:
+                    entity.solidArea.y -= entity.speed;
+                    if (entity.solidArea.intersects(gp.objects.get(i).solidArea)) {
+                        System.out.println("up collision");
+                        index = i;
+                    }
+                    entity.solidArea.y += entity.speed;
+                    break;
+                case 2:
+                    entity.solidArea.x -= entity.speed;
+                    if (entity.solidArea.intersects(gp.objects.get(i).solidArea)) {
+                        System.out.println("left collision");
+                        index = i;
+                    }
+                    entity.solidArea.x += entity.speed;
+                    break;
+                case 3:
+                    entity.solidArea.x += entity.speed;
+                    if (entity.solidArea.intersects(gp.objects.get(i).solidArea)) {
+                        System.out.println("right collision");
+                        index = i;
+                    }
+                    entity.solidArea.x -= entity.speed;
+                    break;
+            }
+            entity.solidArea.x = lastX;
+            entity.solidArea.y = lastY;
+
+            gp.objects.get(i).solidArea.x -= gp.objects.get(i).xMap;
+            gp.objects.get(i).solidArea.y -= gp.objects.get(i).yMap;
+        }
+        return index;
     }
 }
